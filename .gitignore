@@ -1,0 +1,19 @@
+# Versiones antiguas
+portfolio_v1.html
+portfolio_v2.html
+textos_portfolio_v2_DEU.md
+
+# Carpetas de trabajo no necesarias para el sitio
+Portfolio_IMGs_Original/
+Portfolio_IMGs_Final_highres/
+Portfolio_IMGs/
+inspiracion_portfolio/
+
+# Documentos privados
+*.docx
+*.pdf
+*.md
+
+# Sistema
+.DS_Store
+Thumbs.db

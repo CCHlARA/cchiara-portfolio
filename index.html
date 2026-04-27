@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carola Chiara Cordero — Grafikdesignerin · Bayern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F2E9;
+    --bg-soft: #EFE8DA;
+    --text: #2A2522;
+    --text-soft: #5C544D;
+    --rose: #E8B4B8;
+    --sage: #B5C4A9;
+    --terra: #D49B7C;
+    --cream: #F0E2C5;
+    --line: rgba(42, 37, 34, 0.12);
+    --maxw: 1180px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body.modal-open { overflow: hidden; }
+  ::selection { background: var(--terra); color: var(--bg); }
+
+  .display {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(247, 242, 233, 0.7);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--line); }
+  nav .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: -0.01em;
+  }
+  nav .logo span { color: var(--terra); }
+  nav ul {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    font-size: 0.92rem;
+  }
+  nav a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--terra);
+    transition: width 0.3s ease;
+  }
+  nav a:hover { color: var(--terra); }
+  nav a:hover::after { width: 100%; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 40px 80px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-text { z-index: 2; }
+
+  .hero-eyebrow {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    margin-bottom: 24px;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s ease-out forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s ease-out forwards;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terra);
+    font-weight: 400;
+  }
+
+  .hero-lead {
+    font-size: 1.12rem;
+    color: var(--text-soft);
+    max-width: 520px;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s ease-out forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s ease-out forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 100px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    background: var(--terra);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    color: var(--text);
+    border-color: var(--line);
+  }
+  .btn-ghost:hover {
+    border-color: var(--text);
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  /* ---------- FACE SVG ---------- */
+  .face-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 841.9 / 595.3;
+  }
+
+  .face-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  .face-svg .draw {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .pupil {
+    fill: var(--text);
+    transition: transform 0.08s ease-out;
+  }
+
+  /* ---------- SCROLL-IN ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- INTRO STRIP ---------- */
+  .intro-strip {
+    background: var(--bg-soft);
+    padding: 80px 40px;
+    margin-top: 40px;
+  }
+  .intro-strip-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .intro-strip h2 {
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    color: var(--text-soft);
+    font-weight: 400;
+  }
+  .intro-strip p {
+    font-size: 1.18rem;
+    line-height: 1.7;
+    color: var(--text);
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+  }
+  .intro-strip p strong {
+    font-weight: 500;
+    color: var(--terra);
+    font-style: italic;
+  }
+
+  /* ---------- WORK ---------- */
+  .work {
+    padding: 120px 40px 80px;
+    max-width: var(--maxw);
+    margin: 0 auto;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+  }
+  .section-head h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  .section-head .count {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Cards layout */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  .work-card {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    padding: 0;
+    transition: transform 0.4s ease;
+  }
+  .work-card:hover { transform: translateY(-6px); }
+  .work-card:focus-visible {
+    outline: 2px solid var(--terra);
+    outline-offset: 8px;
+    border-radius: 4px;
+  }
+
+  .card-visual {
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg-soft);
+    position: relative;
+    margin-bottom: 22px;
+  }
+  .card-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .work-card:hover .card-visual img { transform: scale(1.04); }
+
+  .card-visual .badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+    z-index: 2;
+  }
+  .badge.ki     { background: rgba(247, 242, 233, 0.92); color: var(--text); }
+  .badge.fresh  { background: rgba(212, 155, 124, 0.92); color: var(--bg); }
+  .badge.classic{ background: rgba(42, 37, 34, 0.78); color: var(--bg); }
+  .badge.award  { background: #E50019; color: white; }
+
+  .card-num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    color: var(--terra);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .card-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .card-meta {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-bottom: 12px;
+  }
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    color: var(--text);
+    font-weight: 500;
+    border-bottom: 1px solid var(--terra);
+    padding-bottom: 3px;
+    transition: color 0.2s;
+  }
+  .work-card:hover .card-cta { color: var(--terra); }
+
+  /* ---------- MODAL / LIGHTBOX ---------- */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(42, 37, 34, 0.55);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    backdrop-filter: blur(6px);
+  }
+  .modal-backdrop.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -45%);
+    width: min(1100px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--bg);
+    border-radius: 12px;
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  }
+  .modal.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+  }
+
+  .modal-close {
+    position: sticky;
+    top: 16px;
+    margin-left: auto;
+    margin-right: 16px;
+    display: block;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+    line-height: 0;
+  }
+  .modal-close:hover { background: var(--terra); }
+
+  .modal-inner { padding: 0 50px 50px; margin-top: -44px; }
+
+  .modal-hero {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 36px;
+    background: var(--bg-soft);
+  }
+  .modal-hero img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .modal-hero video {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+
+  .modal-head {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  .modal-head .num {
+    font-family: 'Fraunces', serif;
+    font-size: 0.85rem;
+    color: var(--terra);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+  .modal-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .modal-head .sub {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    font-style: italic;
+    margin-bottom: 24px;
+  }
+
+  .case-block { margin-bottom: 22px; }
+  .case-block-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .case-block p {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .modal-side h4 {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .modal-side .meta-block { margin-bottom: 28px; }
+  .modal-side p {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tool {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    background: var(--bg-soft);
+    border-radius: 100px;
+    color: var(--text);
+    border: 1px solid var(--line);
+  }
+  .tool.ki { background: var(--cream); border-color: var(--terra); color: var(--text); font-weight: 500; }
+
+  .modal-link {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--terra);
+    padding-bottom: 3px;
+    text-decoration: none;
+    margin-top: 8px;
+  }
+  .modal-link:hover { color: var(--terra); }
+
+  /* Gallery */
+  .gallery-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .gallery figure {
+    margin: 0;
+  }
+  .gallery .img-wrap {
+    aspect-ratio: 4/3;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--bg-soft);
+    margin-bottom: 12px;
+  }
+  .gallery .img-wrap.tall { aspect-ratio: 3/4; }
+  .gallery .img-wrap.wide { aspect-ratio: 16/9; }
+  .gallery .img-wrap.compact { aspect-ratio: 2/3; max-width: 320px; margin: 0 auto 12px; }
+  .gallery .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: zoom-in;
+    transition: transform 0.6s ease;
+  }
+  .gallery .img-wrap img:hover { transform: scale(1.03); }
+  .gallery .img-wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .gallery figcaption {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+  .gallery figcaption strong {
+    color: var(--text);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Image lightbox (zoom on gallery image) */
+  .zoom-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 18, 16, 0.92);
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 5vw;
+    cursor: zoom-out;
+  }
+  .zoom-backdrop.open { opacity: 1; pointer-events: all; }
+  .zoom-backdrop img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about {
+    background: var(--bg-soft);
+    padding: 120px 40px;
+  }
+  .about-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-side h2 {
+    font-size: clamp(2rem, 3.6vw, 2.6rem);
+    margin-bottom: 16px;
+  }
+  .about-side .tag {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    margin-bottom: 28px;
+  }
+  .about-body p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 22px;
+    color: var(--text);
+  }
+  .about-body p strong { font-weight: 600; color: var(--text); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .skill {
+    padding: 20px;
+    background: var(--bg);
+    border-radius: 10px;
+    border-left: 3px solid var(--terra);
+  }
+  .skill h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .skill p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .lang-bar {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .lang {
+    padding: 8px 18px;
+    border-radius: 100px;
+    background: var(--bg);
+    font-size: 0.85rem;
+    border: 1px solid var(--line);
+  }
+  .lang strong { color: var(--terra); font-weight: 600; }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    padding: 140px 40px;
+    text-align: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .cta h2 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    margin-bottom: 28px;
+    line-height: 1.05;
+  }
+  .cta h2 em { color: var(--terra); font-style: italic; }
+  .cta p {
+    font-size: 1.15rem;
+    color: var(--text-soft);
+    margin-bottom: 40px;
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+  }
+  .cta-links a {
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 4px;
+    transition: all 0.2s;
+  }
+  .cta-links a:hover { color: var(--terra); border-color: var(--terra); }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    border-top: 1px solid var(--line);
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- LANG TOGGLE ---------- */
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: 20px;
+  }
+  .lang-switch button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-soft);
+    padding: 5px 9px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    letter-spacing: 0.06em;
+  }
+  .lang-switch button:hover { color: var(--text); }
+  .lang-switch button.active {
+    color: var(--terra);
+    font-weight: 700;
+  }
+  .lang-switch .divider {
+    color: var(--line);
+    font-size: 1rem;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px) {
+    nav { padding: 18px 24px; }
+    nav ul { gap: 20px; font-size: 0.85rem; }
+    nav ul li:nth-child(2) { display: none; }
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 110px 24px 60px;
+    }
+    .face-stage { order: -1; max-width: 480px; margin: 0 auto; }
+    .intro-strip-inner,
+    .about-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .work-grid { grid-template-columns: 1fr; gap: 30px; }
+    .work, .intro-strip, .about, .cta { padding-left: 24px; padding-right: 24px; }
+    .modal { width: 96vw; max-height: 92vh; border-radius: 10px; }
+    .modal-inner { padding: 0 24px 32px; }
+    .modal-head { grid-template-columns: 1fr; gap: 28px; padding-bottom: 28px; margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">cchiara<span>.</span></div>
+  <ul>
+    <li><a href="#work" data-i18n="nav.work">Arbeiten</a></li>
+    <li><a href="#about" data-i18n="nav.about">Über mich</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Kontakt</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button data-lang="de" class="active">DE</button>
+    <span class="divider">|</span>
+    <button data-lang="en">EN</button>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Grafikdesignerin · Bayern</div>
+    <h1 class="display" data-i18n-html="hero.h1">Hallo,<br>ich bin <em>Caro.</em></h1>
+    <p class="hero-lead" data-i18n="hero.lead">
+      15+ Jahre Markenidentität, Editorial und Packaging — für BMW ALPINA, ALPINA WEIN
+      und Clormann Design (Red Dot Award 2014). Heute erweitert um KI-gestützte Kreativ-Workflows.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary" data-i18n="hero.cta1">Arbeiten ansehen →</a>
+      <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Kontakt</a>
+    </div>
+  </div>
+
+  <div class="face-stage">
+    <svg class="face-svg" id="faceSvg" viewBox="0 0 841.9 595.3" xmlns="http://www.w3.org/2000/svg">
+      <g id="CABELLO_x5F_Izquierdo">
+        <path class="draw" d="M486.7,114c-5.9-44.8-69.9-15.8-88.5,6.3-36.5,41-77.4,124.2-110.2,158.6-14,24.9-89.6,62.7-59,102.5"/>
+        <path class="draw" d="M319.1,565.5c-58.5,5-128.6-43.4-128.6-43.4,89.7-35.8-10.1-165.4,35.6-229.7"/>
+        <path class="draw" d="M388.1,132.5c31.8-28.9,71.9-27.2,100.4-17.8,23.9-51.6-34.7-100.9-85-84.1-81.3,19.9-242.1,200.8-188.4,283.6"/>
+      </g>
+      <g id="CABELLO_x5F_derecho">
+        <path class="draw" d="M514.8,552.4s94.2,46.3,159.7-54.4c-32.9-2.6-81.9-35.7-84.9-67.1,72.5-164.9,7.7-389-107.8-377.4"/>
+      </g>
+      <g id="ROSTRO">
+        <path class="draw" d="M281.9,287c2,49.8-.8,129.5,38,171.5,10.3,10.5,21.4,20.3,32.1,30.4,18.3,16,33.4,38.3,58.9,42.7,45.5,8.1,74.4-36.4,101.8-62.4,40.8-37.4,48-97.7,50.4-149.4"/>
+        <path class="draw" d="M456.9,453.6c-20.2,17.7-50.3,19.4-78.7-3"/>
+        <path class="draw" d="M437.6,294.1c1.1-56.6,77.1-84,100.2-46.7"/>
+        <path class="draw" d="M456.5,365.4c5.3,3.6,11.9,23.3-5.5,26.4"/>
+        <path class="draw" d="M281.2,311.8c-2.8,3.9-6,7.7-8.3,11.9-3.4,6.4,1,17.5,7.7,20.7"/>
+        <g id="ojo_x5F_izquierdo">
+          <path class="draw" d="M378.2,274.7c-14.1-12.7-44.1-17.7-58.8.3"/>
+          <path class="draw" d="M340.8,278.4c-4.1,5.1-2.5,14.3,2.8,17.7,6.3,3,10.4,1.5,15.6,1.1,7.2-.5,14.3-2.1,21.4.1,1.3.4,3,.9,4.3.4-5.3-18.3-43.2-33-63-10.2"/>
+          <path class="draw" d="M364.6,282.4c5.5,24.1-31.1,15.1-41.3,6-2.6-.5-6.1-.8-8.3-2"/>
+        </g>
+        <path class="draw" d="M324.8,229.9c87.6-13.3,92.3,87.9,70.4,145,13.7,39.9,64.6,2.6,33.6,11-14.3,4-2.3,31.4-3.7,45,0,0-7.8,12.2-16.8,1-5.1,1.1-52.3-.7-52.9-1.6,41.9,19.1,84.9,26.2,123.3,1.7,28.7-12.8-13.3,8.5-47.9.4"/>
+        <path class="draw" d="M493.7,122c.6-.5,80.9,28.9,67.5,163.1-.7,7.4.7,17.2,1.7,30.3.4,5.7,3.9,10.8,5.9,16.2,4.2,9.3,4.9,26.2-8,28"/>
+        <g id="ojo_x5F_derecho">
+          <path class="draw" d="M465.9,274c14.9-11.7,45.2-14.7,58.6,4.1"/>
+          <path class="draw" d="M502.9,280.1c3.8,5.3,1.5,14.5-4,17.4-6.5,2.6-10.5.8-15.6.1-7.1-.9-14.1-3-21.4-1.3-1.4.3-3.1.7-4.3,0,6.3-17.6,44.8-30.1,63.2-6.5"/>
+          <path class="draw" d="M478.9,282.5c-7,23.7,30,17.2,40.8,8.7,2.9-.3,6.7-.5,9.1-1.8"/>
+        </g>
+      </g>
+      <!-- Pupils — bigger, follow cursor -->
+      <g id="pupils">
+        <circle id="pupilLeft" class="pupil" cx="354" cy="286" r="6"/>
+        <circle id="pupilRight" class="pupil" cx="492" cy="287" r="6"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ============== INTRO STRIP ============== -->
+<section class="intro-strip">
+  <div class="intro-strip-inner">
+    <h2 class="display reveal" data-i18n="intro.h2">Eine Markendesignerin, die Systeme baut — nicht nur Layouts.</h2>
+    <p class="reveal" data-i18n-html="intro.p">
+      Mein Fokus liegt auf <strong>visuellen Systemen</strong>, die Marken über Print und Digital hinweg tragen.
+      Drei Sprachen, drei Länder, fünfzehn Jahre Praxis — und ein Auge für die Details, die in der
+      Reinzeichnung den Unterschied machen. Heute arbeite ich mit KI-gestützten Workflows, ohne dabei
+      die handwerkliche Tiefe aufzugeben.
+    </p>
+  </div>
+</section>
+
+<!-- ============== WORK ============== -->
+<section class="work" id="work">
+  <div class="section-head reveal">
+    <h2 class="display" data-i18n="work.title">Ausgewählte Arbeiten</h2>
+    <span class="count" data-i18n="work.count">04 / Cases · klick für Details</span>
+  </div>
+  <div class="work-grid" id="workGrid">
+    <!-- Cards rendered by JS -->
+  </div>
+</section>
+
+<!-- ============== ABOUT ============== -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-side reveal">
+      <div class="tag" data-i18n="about.tag">Über mich</div>
+      <h2 class="display" data-i18n-html="about.h2">Drei Sprachen,<br>drei Länder,<br>ein Handwerk.</h2>
+    </div>
+    <div class="about-body reveal">
+      <p data-i18n-html="about.p1">
+        Ich bin <strong>Carola Chiara Cordero</strong> — peruanisch-italienische Grafikdesignerin
+        mit Hochschulabschluss in Kunst &amp; Grafik-Design (Universidad San Ignacio de Loyola, Lima).
+        Seit 2008 in Deutschland, mit 15+ Jahren Berufserfahrung zwischen Lima, Augsburg und Panama.
+      </p>
+      <p data-i18n-html="about.p2">
+        Meine Spezialisierung liegt in <strong>Markenidentität, Editorial Design und Packaging</strong>.
+        Mein aktueller Fokus: Erweiterung in Motion Design, UI und KI-gestützte
+        Kreativ-Produktion — sichtbar in meinem jüngsten Case Study zur Kampagne »Gutes mit Haltung«.
+      </p>
+
+      <div class="skills-grid">
+        <div class="skill"><h4 data-i18n="skill.1.h">Strategische Klarheit</h4><p data-i18n="skill.1.p">Ich denke in Systemen, nicht nur in Layouts.</p></div>
+        <div class="skill"><h4 data-i18n="skill.2.h">Detailliebe</h4><p data-i18n="skill.2.p">Reinzeichnung und Druckvorstufe als Disziplin.</p></div>
+        <div class="skill"><h4 data-i18n="skill.3.h">Ruhe unter Druck</h4><p data-i18n="skill.3.p">15 Jahre Praxis. Deadlines sind keine Krisen.</p></div>
+        <div class="skill"><h4 data-i18n="skill.4.h">Mehrsprachigkeit</h4><p data-i18n="skill.4.p">Briefings auf Spanisch, Deutsch oder Italienisch.</p></div>
+      </div>
+
+      <div class="lang-bar">
+        <div class="lang"><strong data-i18n="lang.es.label">Spanisch</strong> · <span data-i18n="lang.es.level">Muttersprache</span></div>
+        <div class="lang"><strong data-i18n="lang.it.label">Italienisch</strong> · <span data-i18n="lang.it.level">fließend</span></div>
+        <div class="lang"><strong data-i18n="lang.de.label">Deutsch</strong> · <span data-i18n="lang.de.level">B1–B2, im Ausbau</span></div>
+        <div class="lang"><strong data-i18n="lang.en.label">Englisch</strong> · <span data-i18n="lang.en.level">Grundkenntnisse</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="cta" id="contact">
+  <h2 class="display reveal" data-i18n-html="cta.h2">Lass uns <em>reden.</em></h2>
+  <p class="reveal" data-i18n="cta.p">
+    Auf der Suche nach einer Festanstellung in Bayern (hybrid oder remote möglich) oder einem
+    fest angedockten Freelance-Retainer. Besonders interessant: Teams, in denen Markenidentität,
+    Editorial und digitale Kommunikation unter einem Dach leben.
+  </p>
+  <div class="cta-links reveal">
+    <a href="mailto:c.chiara.cordero@gmail.com">c.chiara.cordero@gmail.com</a>
+    <a href="tel:+4915150720554">+49 151 5072 0554</a>
+    <a href="https://linkedin.com/in/carolachiara" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://behance.net/cchiara" target="_blank" rel="noopener">Behance</a>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer">© 2026 Carola Chiara Cordero · Augsburg, Bayern · Built mit Sorgfalt.</span>
+</footer>
+
+<!-- ============== MODAL ============== -->
+<div class="modal-backdrop" id="modalBackdrop"></div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button class="modal-close" id="modalClose" aria-label="Schließen">×</button>
+  <div class="modal-inner" id="modalContent"></div>
+</div>
+
+<!-- Image zoom -->
+<div class="zoom-backdrop" id="zoomBackdrop">
+  <div id="zoomImgWrapper" style="position:relative;max-width:100%;max-height:100%;display:flex;align-items:center;justify-content:center;">
+    <img id="zoomImg" src="" alt="">
+    <div id="zoomWatermark" style="display:none;position:absolute;bottom:16px;right:16px;background:rgba(0,0,0,0.55);color:#fff;padding:8px 14px;font-size:0.8rem;border-radius:4px;font-family:'Inter',sans-serif;font-weight:500;pointer-events:none;line-height:1.4;text-align:right;">© Copyright Burkard Bovensiepen GmbH + Co. KG</div>
+  </div>
+</div>
+
+<script>
+  // ===========================================================
+  //  HELPERS
+  // ===========================================================
+  const IMG = (name) => `Portfolio_IMGs_Final/${encodeURIComponent(name)}`;
+  const isVideo = (src) => typeof src === 'string' && src.toLowerCase().endsWith('.mp4');
+
+  // ===========================================================
+  //  LANGUAGE / TRANSLATIONS
+  // ===========================================================
+  let currentLang = localStorage.getItem('portfolioLang') || 'de';
+
+  const TRANSLATIONS = {
+    de: {
+      'nav.work': 'Arbeiten',
+      'nav.about': 'Über mich',
+      'nav.contact': 'Kontakt',
+      'hero.eyebrow': 'Grafikdesignerin · Bayern',
+      'hero.h1': 'Hallo,<br>ich bin <em>Caro.</em>',
+      'hero.lead': '15+ Jahre Markenidentität, Editorial und Packaging — für BMW ALPINA, ALPINA WEIN und Clormann Design (Red Dot Award 2014). Heute erweitert um KI-gestützte Kreativ-Workflows.',
+      'hero.cta1': 'Arbeiten ansehen →',
+      'hero.cta2': 'Kontakt',
+      'intro.h2': 'Eine Markendesignerin, die Systeme baut — nicht nur Layouts.',
+      'intro.p': 'Mein Fokus liegt auf <strong>visuellen Systemen</strong>, die Marken über Print und Digital hinweg tragen. Drei Sprachen, drei Länder, fünfzehn Jahre Praxis — und ein Auge für die Details, die in der Reinzeichnung den Unterschied machen. Heute arbeite ich mit KI-gestützten Workflows, ohne dabei die handwerkliche Tiefe aufzugeben.',
+      'work.title': 'Ausgewählte Arbeiten',
+      'work.count': '04 / Cases · klick für Details',
+      'about.tag': 'Über mich',
+      'about.h2': 'Drei Sprachen,<br>drei Länder,<br>ein Handwerk.',
+      'about.p1': 'Ich bin <strong>Carola Chiara Cordero</strong> — peruanisch-italienische Grafikdesignerin mit Hochschulabschluss in Kunst &amp; Grafik-Design (Universidad San Ignacio de Loyola, Lima). Seit 2008 in Deutschland, mit 15+ Jahren Berufserfahrung zwischen Lima, Augsburg und Panama.',
+      'about.p2': 'Meine Spezialisierung liegt in <strong>Markenidentität, Editorial Design und Packaging</strong>. Mein aktueller Fokus: Erweiterung in Motion Design, UI und KI-gestützte Kreativ-Produktion — sichtbar in meinem jüngsten Case Study zur Kampagne »Gutes mit Haltung«.',
+      'skill.1.h': 'Strategische Klarheit',  'skill.1.p': 'Ich denke in Systemen, nicht nur in Layouts.',
+      'skill.2.h': 'Detailliebe',             'skill.2.p': 'Reinzeichnung und Druckvorstufe als Disziplin.',
+      'skill.3.h': 'Ruhe unter Druck',        'skill.3.p': '15 Jahre Praxis. Deadlines sind keine Krisen.',
+      'skill.4.h': 'Mehrsprachigkeit',        'skill.4.p': 'Briefings auf Spanisch, Deutsch oder Italienisch.',
+      'lang.es.label': 'Spanisch',   'lang.es.level': 'Muttersprache',
+      'lang.it.label': 'Italienisch','lang.it.level': 'fließend',
+      'lang.de.label': 'Deutsch',    'lang.de.level': 'B1–B2, im Ausbau',
+      'lang.en.label': 'Englisch',   'lang.en.level': 'Grundkenntnisse',
+      'cta.h2': 'Lass uns <em>reden.</em>',
+      'cta.p': 'Auf der Suche nach einer Festanstellung in Bayern (hybrid oder remote möglich) oder einem fest angedockten Freelance-Retainer. Besonders interessant: Teams, in denen Markenidentität, Editorial und digitale Kommunikation unter einem Dach leben.',
+      'footer': '© 2026 Carola Chiara Cordero · Augsburg, Bayern · Built mit Sorgfalt.',
+      'modal.role': 'Rolle',
+      'modal.tools': 'Tools &amp; Programme',
+      'modal.live': 'Live',
+      'modal.brief': 'Aufgabe',
+      'modal.approach': 'Lösung',
+      'modal.outcome': 'Ergebnis',
+      'modal.galerie': 'Galerie',
+      'modal.arbeiten': 'Arbeiten',
+      'modal.close': 'Schließen',
+      'title': 'Carola Chiara Cordero — Grafikdesignerin · Bayern',
+    },
+    en: {
+      'nav.work': 'Work',
+      'nav.about': 'About',
+      'nav.contact': 'Contact',
+      'hero.eyebrow': 'Graphic Designer · Bavaria',
+      'hero.h1': 'Hello,<br>I\'m <em>Caro.</em>',
+      'hero.lead': '15+ years of brand identity, editorial and packaging — for BMW ALPINA, ALPINA WEIN and Clormann Design (Red Dot Award 2014). Now expanded with AI-powered creative workflows.',
+      'hero.cta1': 'View work →',
+      'hero.cta2': 'Contact',
+      'intro.h2': 'A brand designer who builds systems — not just layouts.',
+      'intro.p': 'My focus is on <strong>visual systems</strong> that carry brands across print and digital. Three languages, three countries, fifteen years of practice — and an eye for the details that make the difference in final artwork. Today I work with AI-powered workflows, without sacrificing craft and depth.',
+      'work.title': 'Selected Work',
+      'work.count': '04 / Cases · click for details',
+      'about.tag': 'About',
+      'about.h2': 'Three languages,<br>three countries,<br>one craft.',
+      'about.p1': 'I am <strong>Carola Chiara Cordero</strong> — a Peruvian-Italian graphic designer with a university degree in Art &amp; Graphic Design (Universidad San Ignacio de Loyola, Lima). Based in Germany since 2008, with 15+ years of professional experience across Lima, Augsburg and Panama.',
+      'about.p2': 'My specialisation lies in <strong>brand identity, editorial design and packaging</strong>. My current focus: expanding into motion design, UI and AI-powered creative production — visible in my most recent case study for the »Good with Purpose« campaign.',
+      'skill.1.h': 'Strategic Clarity',   'skill.1.p': 'I think in systems, not just in layouts.',
+      'skill.2.h': 'Eye for Detail',       'skill.2.p': 'Final artwork and pre-press as a discipline.',
+      'skill.3.h': 'Calm Under Pressure',  'skill.3.p': '15 years of practice. Deadlines aren\'t crises.',
+      'skill.4.h': 'Multilingual',         'skill.4.p': 'Briefings in Spanish, German or Italian.',
+      'lang.es.label': 'Spanish',   'lang.es.level': 'Native',
+      'lang.it.label': 'Italian',   'lang.it.level': 'Fluent',
+      'lang.de.label': 'German',    'lang.de.level': 'B1–B2, developing',
+      'lang.en.label': 'English',   'lang.en.level': 'Basic',
+      'cta.h2': 'Let\'s <em>talk.</em>',
+      'cta.p': 'Looking for a permanent position in Bavaria (hybrid or remote welcome) or a committed freelance retainer. Particularly interested in teams where brand identity, editorial and digital communication live under one roof.',
+      'footer': '© 2026 Carola Chiara Cordero · Augsburg, Bavaria · Built with care.',
+      'modal.role': 'Role',
+      'modal.tools': 'Tools &amp; Software',
+      'modal.live': 'Live',
+      'modal.brief': 'Brief',
+      'modal.approach': 'Approach',
+      'modal.outcome': 'Outcome',
+      'modal.galerie': 'Gallery',
+      'modal.arbeiten': 'Works',
+      'modal.close': 'Close',
+      'title': 'Carola Chiara Cordero — Graphic Designer · Bavaria',
+    }
+  };
+
+  function T(key) { return TRANSLATIONS[currentLang][key] || TRANSLATIONS.de[key] || key; }
+
+  function applyTranslations() {
+    document.title = T('title');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = T(el.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      el.innerHTML = T(el.dataset.i18nHtml);
+    });
+    document.getElementById('modalClose').setAttribute('aria-label', T('modal.close'));
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('portfolioLang', lang);
+    applyTranslations();
+    renderCards();
+    closeModal();
+    // Immediately reveal cards already in viewport
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.work-card.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('in');
+        } else {
+          cardObserver.observe(el);
+        }
+      });
+    });
+  }
+
+  // ===========================================================
+  //  CASE DATA — bilingual
+  // ===========================================================
+  const CASES = [
+
+    // ---------------- 01 GOOOD ----------------
+    {
+      id: 'goood', displayId: 'GOOOD', num: '01',
+      badge: { cls: 'ki', de: 'KI-gestützt', en: 'AI-powered' },
+      cover: 'GOOOD_BILDWELT_Insta_test.png',
+      hero: 'GOOOD_2026_Einführungskampagne_Snack BIO HANF Cracker_GOOOD.mp4',
+      heroIsVideo: true,
+      tools: [
+        { name: 'Adobe Firefly', highlight: true },
+        { name: 'KI-Workflow / AI Workflow', highlight: true },
+        { name: 'Illustrator' }, { name: 'Photoshop' }, { name: 'InDesign' }, { name: 'Canva' }
+      ],
+      link: { url: 'https://cchiara.my.canva.site/kampagne-gutes-mit-haltung/', label: 'Live Case Study →' },
+      gallery: [
+        { src: 'GOOOD_BILDWELT_Generated Image January 27, 2026 - 8_04AM.png',
+          de: { title: 'Verpackungsdesign', caption: 'Das Produkt im Regal erlebbar machen — Bio-Hanf-Snack in der neuen Kampagnen-Bildwelt.' },
+          en: { title: 'Packaging Design', caption: 'Making the product shelf-ready — organic hemp snack in the new campaign visual world.' } },
+        { src: 'GOOOD_ANZEIGE5.png', shape: 'tall',
+          de: { title: 'Print-Anzeige DIN A4', caption: 'Hauptmotiv der Einführungskampagne — »Wo Verantwortung knuspert.«' },
+          en: { title: 'Print Ad DIN A4', caption: 'Main visual of the launch campaign — »Where responsibility gets crunchy.«' } },
+        { src: 'GOOOD_INSTA1.png',
+          de: { title: 'Instagram / Facebook Posts', caption: 'Hauptmotiv der Einführungskampagne — adaptiert für Social-Media-Formate.' },
+          en: { title: 'Instagram / Facebook Posts', caption: 'Main visual of the launch campaign — adapted for social media formats.' } },
+        { src: 'GOOOD_BANNER.png', shape: 'wide',
+          de: { title: 'Website-Banner', caption: 'Hero-Banner für Online-Shop und Partner-Sites.' },
+          en: { title: 'Website Banner', caption: 'Hero banner for the online shop and partner sites.' } },
+        { src: 'GOOOD_2026_Einführungskampagne_Snack BIO HANF Cracker_GOOOD.png', shape: 'wide',
+          de: { title: 'Event / Stand-Design', caption: 'Ein modularer Messestand mit Fotopoint, Transparenzwand und Verkostung — lädt zum Erleben ein.' },
+          en: { title: 'Event / Stand Design', caption: 'A modular trade fair stand with photo point, transparency wall and tasting — inviting people in.' } },
+        { src: 'GOOOD_BILDWELTGenerated Image March 01, 2026 - 2_26AM.png',
+          de: { title: 'Influencer-Kit', caption: 'Samen-Päckchen (»Blühfläche«) und Probepackungen für Mikro-Influencer.' },
+          en: { title: 'Influencer Kit', caption: 'Seed packets (»Wildflower Meadow«) and sample packs for micro-influencers.' } },
+        { src: 'GOOOD_BILDWELT_grok-video-52cb7eba-37aa-4b2b-8901-d8d726b7a83e.mp4',
+          de: { title: 'TikTok / Reels', caption: 'Serie »Haltungs-Check« — hinter die Kulissen: Hanfanbau und Herstellung.' },
+          en: { title: 'TikTok / Reels', caption: 'Series »Integrity Check« — behind the scenes: hemp cultivation and production.' } },
+        { src: 'GOOOD_BILDWELT_Generated Image January 26, 2026 - 9_45AM.png',
+          de: { title: 'KI-Bildwelt', caption: 'Adobe Firefly — Crackers und Zuhause · Konsistente KI-generierte Bildwelt über alle Motive.' },
+          en: { title: 'AI Visual World', caption: 'Adobe Firefly — Crackers & Home · Consistent AI-generated visuals across all campaign materials.' } },
+        { src: 'GOOOD_BILDWELT_grok-video-eee067d1-c797-4a09-bdde-00b5b41d7ed3.mp4',
+          de: { title: 'TikTok / Reels', caption: 'Serie »Haltungs-Check« — hinter die Kulissen: Hanfanbau und Herstellung.' },
+          en: { title: 'TikTok / Reels', caption: 'Series »Integrity Check« — behind the scenes: hemp cultivation and production.' } }
+      ],
+      de: {
+        title: 'Kampagne »Gutes mit Haltung«',
+        sub: 'Strategischer Produktlaunch · Creative Direction · Adobe Firefly Workflow',
+        meta: 'Konzeptionelle Case Study · 2026',
+        ctaLabel: 'Konzeptionelles Case Study öffnen →',
+        role: 'Creative Direction · Strategie · Gestaltung · KI-Bildproduktion',
+        aufgabe: 'Launch eines neuen veganen Bio-Hanf-Snacks für Hunde. Anforderung: keine Einzel-Designs, sondern eine kohärente Markenwelt, die Produktnutzen und Werte (Tierwohl, Transparenz, Nachhaltigkeit) crossmedial verbindet.',
+        loesung: 'Claim »Wo Verantwortung knuspert« als strategische Klammer. Konsistente Bildwelt über sieben Touchpoints: Verpackung, Anzeige, Website-Banner, Instagram, TikTok, Messestand, Influencer-Kit. Alle Motive vollständig KI-generiert mit Adobe Firefly und im Adobe-Workflow zur finalen Kampagne zusammengeführt.',
+        ergebnis: 'Ein launchfertiger Entwurf, der strategisches Markendenken mit KI-basierten Produktionsprozessen verbindet — und zeigt, wie sich Design-Direktion in der Ära generativer KI verändert.',
+      },
+      en: {
+        title: 'Campaign »Good with Purpose«',
+        sub: 'Strategic Product Launch · Creative Direction · Adobe Firefly Workflow',
+        meta: 'Conceptual Case Study · 2026',
+        ctaLabel: 'Open Conceptual Case Study →',
+        role: 'Creative Direction · Strategy · Design · AI Image Production',
+        aufgabe: 'Launch of a new vegan organic hemp snack for dogs. The brief: not individual designs, but a cohesive brand world connecting product benefits and values — animal welfare, transparency, sustainability — across every touchpoint.',
+        loesung: 'The line »Where responsibility gets crunchy« as a strategic anchor. A consistent visual world across seven touchpoints: packaging, print ad, website banner, Instagram, TikTok, trade fair stand, influencer kit. All visuals fully AI-generated with Adobe Firefly and brought together in the Adobe workflow.',
+        ergebnis: 'A launch-ready concept combining strategic brand thinking with AI-based production — showing how creative direction evolves in the era of generative AI.',
+      }
+    },
+
+    // ---------------- 02 ALPINA WEIN ----------------
+    {
+      id: 'alpinawein', displayId: 'ALPINA WEIN', num: '02',
+      badge: { cls: 'fresh', de: 'Markenrelaunch', en: 'Brand Relaunch' },
+      cover: 'ALPINAWEIN_webdesign_Laptop.png',
+      hero: 'ALPINAWEIN AUSLESE 2024-7_1.jpg',
+      tools: [
+        { name: 'InDesign' }, { name: 'Illustrator' }, { name: 'Photoshop' },
+        { name: 'Canva' }, { name: 'UX/UI-Prinzipien' }
+      ],
+      link: { url: 'https://www.alpinawein.de', label: 'alpinawein.de →' },
+      gallery: [
+        { src: 'ALPINAWEIN_WEB-REDESIGN.png', shape: 'wide',
+          de: { title: 'Website Redesign', caption: 'Neue Markenidentität für alpinawein.de — zentrale Navigationslogik und Premium-Bildsprache.' },
+          en: { title: 'Website Redesign', caption: 'New brand identity for alpinawein.de — central navigation logic and premium visual language.' } },
+        { src: 'ALPINAWEIN_Web_format_handy.png', shape: 'tall',
+          de: { title: 'Mobile Ansicht', caption: 'Mobile-First Logik — vereinfachte Navigation für das optimale Nutzererlebnis unterwegs.' },
+          en: { title: 'Mobile View', caption: 'Mobile-first logic — simplified navigation for the optimal on-the-go experience.' } },
+        { src: 'ALPINAWEIN_Geschenkkarton_4.jpg',
+          de: { title: 'Geschenkkarton', caption: 'Präsentationsbox für eine und sechs Flaschen — hochwertiges Packaging für das Premiumsegment.' },
+          en: { title: 'Gift Box', caption: 'Presentation box for one and six bottles — premium packaging for the top segment.' } },
+        { src: 'Alpinawein_Muenchen_290.jpg',
+          de: { title: 'Holzbox', caption: 'Zum 40-jährigen Jubiläum von ALPINA WEIN gestaltet — exklusive Holzbox mit einer 0,375-ml-Geschenkflasche.' },
+          en: { title: 'Wooden Box', caption: 'Designed for the 40th anniversary of ALPINA WEIN — exclusive wooden box with a 0.375 ml gift bottle.' } },
+        { src: 'ALPINAWEIN_Weinverkostung_Lech12.jpg',
+          de: { title: 'Grafische Materialien', caption: 'Formulare und Verkostungsbogen — grafisch gestaltet, digitalisiert und als Canva-Vorlagen aufbereitet.' },
+          en: { title: 'Graphic Materials', caption: 'Forms and tasting sheets — designed, digitised and prepared as Canva templates.' } },
+        { src: 'ALPINAWEIN_Rolling PIN 2024.jpg',
+          de: { title: 'Verschiedene Printmaterialien', caption: 'Werbemittel und Drucksachen mit dem neuen Corporate Identity von ALPINA WEIN.' },
+          en: { title: 'Print Materials', caption: 'Promotional and printed materials with the new ALPINA WEIN corporate identity.' } },
+        { src: 'AlpinaWein_Berlin_018.jpg',
+          de: { title: 'Auslese On Tour Berlin 2019', caption: 'Markenauftritt — Veranstaltungsdesign mit konsistenter Markenwelt.' },
+          en: { title: 'Auslese On Tour Berlin 2019', caption: 'Brand presence — event design with a consistent visual world.' } },
+        { src: 'Alpinawein-Auslese-2022-058 - Editada_2.png', shape: 'wide',
+          de: { title: 'AUSLESE 2022 · Praterinsel München', caption: 'Markenauftritt — Veranstaltungsdesign mit konsistenter Markenwelt.' },
+          en: { title: 'AUSLESE 2022 · Praterinsel Munich', caption: 'Brand presence — event design with a consistent visual world.' } },
+        { src: 'Alpinawein-Auslese-2022-038.jpg',
+          de: { title: 'AUSLESE 2022', caption: 'Verkostungsbuch &amp; Booklet — Editorial Design für die Jubiläumsveranstaltung.' },
+          en: { title: 'AUSLESE 2022', caption: 'Tasting book &amp; booklet — editorial design for the anniversary event.' } }
+      ],
+      de: {
+        title: 'ALPINA WEIN — Markenrelaunch',
+        sub: 'Corporate Identity · Editorial · Website- &amp; Shop-Redesign · 2024 – heute',
+        meta: 'Freiberuflich für ALPINA · 2024 – heute',
+        ctaLabel: 'Case öffnen →',
+        role: 'Corporate Identity · Editorial · Website · Packaging',
+        aufgabe: 'ALPINA WEIN, seit 1979 einer der renommiertesten Weinimporteure Deutschlands, benötigte eine visuelle Neupositionierung mit klarer Abgrenzung zu BMW ALPINA Automobiles — bei gleichzeitiger Bewahrung des Premium-Erbes.',
+        loesung: 'Ganzheitliches CI-Redesign: behutsame Modernisierung des Logos, neue Geschäftsausstattung, Packaging und Holzboxen. Editorial Design für Kataloge, Preislisten, Event-Materialien. Kompletter Relaunch von Website und Online-Shop — inkl. Konzeption der Seitenlogik, visueller Hierarchien und responsiver Layouts auf Basis von UX/UI-Prinzipien.',
+        ergebnis: 'Ein eigenständiger Markenauftritt, der Tradition bewahrt und durch konsequenten digitalen Ausbau zukunftsfähig macht. Im ALPINA-Zeugnis ausdrücklich als »Kreativleistung« hervorgehoben.',
+      },
+      en: {
+        title: 'ALPINA WEIN — Brand Relaunch',
+        sub: 'Corporate Identity · Editorial · Website &amp; Shop Redesign · 2024 – present',
+        meta: 'Freelance for ALPINA · 2024 – present',
+        ctaLabel: 'Open Case →',
+        role: 'Corporate Identity · Editorial · Website · Packaging',
+        aufgabe: 'ALPINA WEIN, one of Germany\'s most prestigious wine importers since 1979, needed a visual repositioning — clearly distinct from BMW ALPINA Automobiles, while preserving a strong premium heritage.',
+        loesung: 'A holistic CI redesign: careful logo modernisation, new stationery, packaging and wooden boxes. Editorial design for catalogues, price lists and event materials. Full website and online shop relaunch — including the navigation concept, visual hierarchies and responsive layouts based on UX/UI principles.',
+        ergebnis: 'A distinctive brand presence that honours tradition and builds a future-ready digital presence. Explicitly acknowledged in the ALPINA reference letter as a »creative achievement«.',
+      }
+    },
+
+    // ---------------- 03 BMW ALPINA ----------------
+    {
+      id: 'bmwalpina', displayId: 'BMW ALPINA', num: '03',
+      badge: { cls: 'classic', de: 'Flagship-Klient', en: 'Flagship Client' },
+      cover: 'BMWALPINA_webdesign_Laptop.png',
+      hero: 'BMWALPINA_Puzzle_04_2.png',
+      tools: [
+        { name: 'InDesign' }, { name: 'Illustrator' }, { name: 'Photoshop' },
+        { name: 'Reinzeichnung' }, { name: 'Druckvorstufe' }
+      ],
+      link: { url: 'https://www.alpina-classic.shop/teile/', label: 'alpina-classic.shop →' },
+      gallery: [
+        { src: 'BMWALPINACLASSIC_webredesign-3.png', shape: 'wide',
+          de: { title: 'ALPINA CLASSIC Shop · Teile', caption: 'Duales Shop-System — CI-gerechte Frontend-Gestaltung für den Autoteile-Bereich.' },
+          en: { title: 'ALPINA CLASSIC Shop · Parts', caption: 'Dual shop system — CI-compliant front-end design for the auto parts section.' } },
+        { src: 'BMWALPINACLASSIC_web redesign-lifestyle-2.png', shape: 'wide',
+          de: { title: 'ALPINA CLASSIC Shop · Lifestyle', caption: 'Duales Shop-System — CI-gerechte Frontend-Gestaltung für den Lifestyle-Bereich.' },
+          en: { title: 'ALPINA CLASSIC Shop · Lifestyle', caption: 'Dual shop system — CI-compliant front-end design for the lifestyle section.' } },
+        { src: 'BMWALPINA_Block_2_KL.jpg',
+          de: { title: 'ALPINA CLASSIC · Begleitmaterial', caption: 'Entwicklung des grafischen Begleitmaterials für verschiedene Events und Veranstaltungen.' },
+          en: { title: 'ALPINA CLASSIC · Accompanying Materials', caption: 'Development of graphic accompanying materials for various events and occasions.' } },
+        { src: 'BMWALPINA_IAA_Messestand_2015_4P6A2347.JPG', shape: 'wide',
+          de: { title: 'IAA · Internationaler Messeauftritt', caption: 'Aktive Mitarbeit an der grafischen Entwicklung der Messestände und des Druckmaterials für die IAA.' },
+          en: { title: 'IAA · International Trade Fair', caption: 'Active contribution to the graphic development of the trade fair stand and print materials for the IAA.' } },
+        { src: 'BMWALPINA_Genf_Messestand_2016_4P6A4385.JPG', shape: 'wide',
+          de: { title: 'Genfer Salon · Internationaler Messeauftritt', caption: 'Aktive Mitarbeit an der grafischen Entwicklung der Messestände und des Druckmaterials.' },
+          en: { title: 'Geneva Salon · International Trade Fair', caption: 'Active contribution to the graphic development of the trade fair stand and print materials.' } },
+        { src: 'BMWALPINA_Farherlebnistour_2020Alpina-014-editado-1.png',
+          de: { title: 'Fahrerlebnistour 2020', caption: 'Entwicklung des grafischen Begleitmaterials für verschiedene Events, z. B. die Fahrerlebnistour 2020.' },
+          en: { title: 'Fahrerlebnistour 2020', caption: 'Development of graphic accompanying materials for various events, including the Fahrerlebnistour 2020.' } },
+        { src: 'BMWALPINA_NR__2408.jpg',
+          de: { title: 'Sammelmodell · Verpackungen', caption: 'Entwicklung der Verpackungen für die Modell-Sammlerautos von BMW ALPINA.' },
+          en: { title: 'Collector\'s Model · Packaging', caption: 'Development of packaging for the BMW ALPINA collector\'s model cars.' } },
+        { src: 'BMWALPINA_ARTBOTTLE4.jpg', shape: 'tall',
+          de: { title: 'ArtBottle · Flasche &amp; Box', caption: 'Design der Wasserflasche und Banderole für die exklusive ALPINA-Verpackung.' },
+          en: { title: 'ArtBottle · Bottle &amp; Box', caption: 'Design of the water bottle and label band for the exclusive ALPINA packaging.' } },
+        { src: 'BMWALPINA_ARTBOTTLE2.jpg', shape: 'tall',
+          de: { title: 'ArtBottle · Flasche', caption: 'Limitiertes Design der ALPINA-Wasserflasche — für Events und als Merchandise.' },
+          en: { title: 'ArtBottle · Bottle', caption: 'Limited edition ALPINA water bottle design — for events and as merchandise.' } },
+        { src: 'BMWALPINA_Tasse_Detail5.jpg',
+          de: { title: 'ALPINA Tasse', caption: 'Tasse mit ALPINA-Logo — Entwicklung des Designs und der Verpackung.' },
+          en: { title: 'ALPINA Mug', caption: 'Mug with ALPINA logo — design and packaging development.' } },
+        { src: 'BMWALPINA_Puzzle_03.jpg',
+          de: { title: 'ALPINA Puzzle', caption: '24h de Francorchamps BMW ALPINA — 500-Teile-Puzzle als Sammlerstück.' },
+          en: { title: 'ALPINA Puzzle', caption: '24h de Francorchamps BMW ALPINA — 500-piece puzzle as a collector\'s item.' } },
+        { src: 'BMWALPINA_2019_01_ALPINA_Tischkalender_front.jpg',
+          de: { title: 'Tischkalender 2019', caption: 'Merchandising-Design — jährliche Premium-Edition für BMW ALPINA.' },
+          en: { title: 'Desk Calendar 2019', caption: 'Merchandising design — annual premium edition for BMW ALPINA.' } },
+        { src: 'BMWALPINA_2019_01_ALPINA_Tischkalender_open.jpg', shape: 'wide',
+          de: { title: 'Tischkalender 2019 · Geöffnet', caption: 'Innenseiten — typografische Detailarbeit und hochwertiger Druck.' },
+          en: { title: 'Desk Calendar 2019 · Open', caption: 'Inside pages — typographic detail work and high-quality print.' } },
+        { src: 'BMWALPINA_Magnet_Heritage_01_shop.jpg',
+          de: { title: 'Magnet Heritage Edition', caption: 'Grafisches Design der ALPINA-Sammelmagnete — Heritage-Kollektion aus dem Markenarchiv.' },
+          en: { title: 'Magnet Heritage Edition', caption: 'Graphic design of the ALPINA collector magnets — Heritage collection from the brand archive.' } },
+        { src: 'BMWALPINA_Magnet_Racing_01_shop.jpg',
+          de: { title: 'Magnet Racing Edition', caption: 'Grafisches Design der ALPINA-Sammelmagnete — Racing-Kollektion mit sportlicher Bildwelt.' },
+          en: { title: 'Magnet Racing Edition', caption: 'Graphic design of the ALPINA collector magnets — Racing collection with a sporty visual world.' } }
+      ],
+      de: {
+        title: 'BMW ALPINA — 8 Jahre integrierte Markenführung',
+        sub: 'Editorial · Messen · Merchandising · Duales Shop-System · 2015–2023',
+        meta: 'Festanstellung · Abteilung Kommunikation und Medien',
+        ctaLabel: 'Case öffnen →',
+        role: 'Mitglied internes Designteam · Editorial · Packaging · Web · Event-Grafik',
+        aufgabe: 'Als integraler Bestandteil des internen Designteams (Abteilung Kommunikation und Medien) verantwortete ich ein außergewöhnlich vielseitiges Aufgabenspektrum: Verpackungsdesign, Werbeanzeigen, Editorial, Messeauftritte (IAA, Genfer Automobilsalon) sowie die digitale Markenkommunikation — kulminierend im Aufbau des dualen Online-Shop-Systems für ALPINA CLASSIC.',
+        loesung: 'Acht Jahre konsistente Markenführung über alle Touchpoints. Konzeption und Reinzeichnung von Editorial-Projekten (Tischkalender, Broschüren, Flyer). Grafische Unterstützung der internationalen Messeauftritte (IAA Frankfurt, Genfer Salon). Entwicklung der Merchandising-Linie (ArtBottle, Puzzle, Tasse, Magnete). Im Zuge der ALPINA-CLASSIC-Markenentwicklung übernahm ich die CI-gerechte Frontend-Gestaltung des dualen Shop-Systems (Autoteile + Lifestyle).',
+        ergebnis: 'Eine durchgängige visuelle Identität für BMW ALPINA über Print, Digital und Event hinweg — und ein eigenständiger, zeitgemäßer Markenbereich für ALPINA CLASSIC. Das ALPINA-Zeugnis hebt die »herausragende Kreativität« und »Fähigkeit, Markenkonzepte in visuell hochwirksame Designs zu übersetzen« ausdrücklich hervor.',
+      },
+      en: {
+        title: 'BMW ALPINA — 8 Years of Integrated Brand Management',
+        sub: 'Editorial · Trade Fairs · Merchandising · Dual Shop System · 2015–2023',
+        meta: 'Full-time · Communications and Media Department',
+        ctaLabel: 'Open Case →',
+        role: 'Internal Design Team · Editorial · Packaging · Web · Event Graphics',
+        aufgabe: 'As an integral member of the internal design team (Communications and Media department), I handled an exceptionally versatile range of responsibilities: packaging design, print ads, editorial, trade fair appearances (IAA, Geneva Motor Show) and digital brand communication — culminating in the development of the dual online shop system for ALPINA CLASSIC.',
+        loesung: 'Eight years of consistent brand management across all touchpoints. Conception and final artwork for editorial projects (desk calendars, brochures, flyers). Graphic support for international trade fair appearances (IAA Frankfurt, Geneva Salon). Development of the merchandising range (ArtBottle, puzzle, mug, magnets). As part of the ALPINA CLASSIC brand development, I took on the CI-compliant front-end design of the dual shop system (auto parts + lifestyle).',
+        ergebnis: 'A cohesive visual identity for BMW ALPINA across print, digital and events — and a standalone, contemporary brand area for ALPINA CLASSIC. The ALPINA reference letter explicitly highlights the »outstanding creativity« and »ability to translate brand concepts into visually powerful designs«.',
+      }
+    },
+
+    // ---------------- 04 CLORMANN ----------------
+    {
+      id: 'clormann', displayId: 'CLORMANN DESIGN', num: '04',
+      badge: { cls: 'award', de: 'Red Dot 2014', en: 'Red Dot 2014' },
+      cover: 'Clormann_typoposter-ohne-Rahmen.png',
+      coverBlend: true, coverContain: true,
+      hero: 'Clormann_typoposter-ohne-Rahmen.png',
+      heroBlend: true, heroContain: true,
+      tools: [
+        { name: 'InDesign' }, { name: 'Illustrator' }, { name: 'Photoshop' },
+        { name: 'Typografie' }, { name: 'Reinzeichnung' }
+      ],
+      link: { url: 'https://www.red-dot.org/project/laser-poster-21080', de: 'Red Dot · Offizielle Seite →', en: 'Red Dot · Official Page →' },
+      gallery: [
+        { src: 'Clormann_typoposter-1.png', shape: 'compact', contain: true,
+          de: { title: 'Laser Poster — Hauptmotiv', caption: 'Typografische Komposition mit Laserlinien als gestalterisches Element.' },
+          en: { title: 'Laser Poster — Main Visual', caption: 'Typographic composition with laser lines as a design element.' } },
+        { src: 'Clormann_typoposter_certificate-reddot.png', shape: 'tall',
+          de: { title: 'Red Dot Zertifikat 2014', caption: 'Offizielle Auszeichnung Red Dot Communication Design Award.' },
+          en: { title: 'Red Dot Certificate 2014', caption: 'Official Red Dot Communication Design Award recognition.' } },
+        { src: 'Clormann_typoposter_2.png',
+          de: { title: 'Im Designbuch', caption: 'Veröffentlichung im Red Dot Design Yearbook.' },
+          en: { title: 'In the Design Book', caption: 'Published in the Red Dot Design Yearbook.' } },
+        { src: 'CLORMANN_typoposter_reddot.png',
+          de: { title: 'Im Designbuch', caption: 'Veröffentlichung im Red Dot Design Yearbook.' },
+          en: { title: 'In the Design Book', caption: 'Published in the Red Dot Design Yearbook.' } },
+        { src: 'Clormann_typoster_reddot-1.png',
+          de: { title: 'Red Dot Design Yearbook', caption: 'Präsentation im internationalen Red Dot Design Yearbook.' },
+          en: { title: 'Red Dot Design Yearbook', caption: 'Presentation in the international Red Dot Design Yearbook.' } }
+      ],
+      de: {
+        title: 'Laser Poster — Red Dot Award Winner',
+        sub: 'Typografie · Editorial · Clormann Design, Penzing · 2014',
+        meta: 'Praktikum · eigenverantwortliche Konzeption',
+        ctaLabel: 'Case öffnen →',
+        galleryTitle: '5 Impresionen',
+        role: 'Konzeption · Typografie · Reinzeichnung',
+        aufgabe: 'Im Rahmen internationaler Designwettbewerbe entwarf ich für Clormann Design ein typografisches Poster zum Thema Laser. Das Projekt führte ich von der initialen Idee bis zur finalen Realisierung eigenverantwortlich durch.',
+        loesung: 'Eine rein typografische Komposition, die Laserlinien als gestalterisches Element und Inhaltsträger zugleich nutzt. Die Detailarbeit an Buchstabenform, Spacing und Druckveredelung war zentral.',
+        ergebnis: 'Ausgezeichnet mit dem Red Dot Design Award 2014 — einer der prestigeträchtigsten Designpreise weltweit. Das Clormann-Praktikumszeugnis hebt das Projekt als »besonderen Erfolg« hervor.',
+      },
+      en: {
+        title: 'Laser Poster — Red Dot Award Winner',
+        sub: 'Typography · Editorial · Clormann Design, Penzing · 2014',
+        meta: 'Internship · independent conception',
+        ctaLabel: 'Open Case →',
+        galleryTitle: '5 Impressions',
+        role: 'Conception · Typography · Final Artwork',
+        aufgabe: 'As part of international design competitions, I developed a typographic poster on the theme of lasers for Clormann Design — carrying the project independently from the initial idea through to final realisation.',
+        loesung: 'A purely typographic composition using laser lines simultaneously as a design element and carrier of meaning. Meticulous attention to letterform, spacing and print finishing was at its core.',
+        ergebnis: 'Awarded the Red Dot Design Award 2014 — one of the most prestigious design prizes in the world. The Clormann internship reference letter highlights the project as a »particular success«.',
+      }
+    }
+  ];
+
+  // Helper: get current-language text for a case
+  function ct(c) { return c[currentLang] || c.de; }
+  // Helper: get current-language gallery item text
+  function gt(g) { return g[currentLang] || g.de; }
+
+  // ===========================================================
+  //  RENDER CARDS  (re-callable on language switch)
+  // ===========================================================
+  const grid = document.getElementById('workGrid');
+
+  function renderCards() {
+    grid.innerHTML = '';
+    CASES.forEach((c) => {
+      const txt = ct(c);
+      const btn = document.createElement('button');
+      btn.className = 'work-card reveal';
+      btn.dataset.caseId = c.id;
+      const blendStyle = c.coverBlend ? 'mix-blend-mode:multiply;' : '';
+      const fitStyle   = c.coverContain ? 'object-fit:contain;padding:12px;' : '';
+      const badgeText  = c.badge ? (c.badge[currentLang] || c.badge.de) : '';
+      btn.innerHTML = `
+        <div class="card-visual">
+          ${c.badge ? `<span class="badge ${c.badge.cls}">${badgeText}</span>` : ''}
+          <img src="${IMG(c.cover)}" alt="${txt.title}" loading="lazy" style="${blendStyle}${fitStyle}">
+        </div>
+        <div class="card-num">${c.num} / ${c.displayId}</div>
+        <h3 class="card-title">${txt.title}</h3>
+        <p class="card-meta">${txt.meta}</p>
+        <span class="card-cta">${txt.ctaLabel}</span>
+      `;
+      btn.addEventListener('click', () => openModal(c.id));
+      grid.appendChild(btn);
+    });
+  }
+
+  // ===========================================================
+  //  MODAL
+  // ===========================================================
+  const backdrop = document.getElementById('modalBackdrop');
+  const modal    = document.getElementById('modal');
+  const content  = document.getElementById('modalContent');
+  const closeBtn = document.getElementById('modalClose');
+
+  function openModal(id) {
+    const c = CASES.find(x => x.id === id);
+    if (!c) return;
+    const txt = ct(c);
+
+    // Hero media
+    let heroMedia;
+    if (c.heroIsVideo) {
+      heroMedia = `<video src="${IMG(c.hero)}" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;"></video>`;
+    } else {
+      const blendStyle   = c.heroBlend   ? 'mix-blend-mode:multiply;background:#F7F2E9;' : '';
+      const containStyle = c.heroContain ? 'object-fit:contain;padding:32px;' : '';
+      heroMedia = `<img src="${IMG(c.hero)}" alt="${txt.title}" style="${blendStyle}${containStyle}">`;
+    }
+
+    // Gallery items
+    const galleryItems = c.gallery.map(g => {
+      const gtxt = gt(g);
+      let media;
+      if (isVideo(g.src)) {
+        media = `<video src="${IMG(g.src)}" controls muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></video>`;
+      } else {
+        const imgStyle = g.contain ? 'object-fit:contain;padding:16px;background:var(--bg);' : '';
+        media = `<img src="${IMG(g.src)}" alt="${gtxt.title}" loading="lazy" data-zoom="${IMG(g.src)}" style="${imgStyle}">`;
+      }
+      return `
+        <figure>
+          <div class="img-wrap ${g.shape || ''}">
+            ${media}
+          </div>
+          <figcaption><strong>${gtxt.title}</strong> ${gtxt.caption}</figcaption>
+        </figure>`;
+    }).join('');
+
+    // Link label: support both c.link.label (shared) and c.link.de / c.link.en (per-lang)
+    const linkLabel = c.link ? (c.link[currentLang] || c.link.label || c.link.de) : '';
+
+    const gallerySuffix = T('modal.arbeiten');
+    const galleryHeading = txt.galleryTitle
+      ? txt.galleryTitle
+      : `${T('modal.galerie')} · ${c.gallery.length} ${gallerySuffix}`;
+
+    content.innerHTML = `
+      <div class="modal-hero">${heroMedia}</div>
+      <div class="modal-head">
+        <div>
+          <div class="num">${c.num} / ${c.displayId}</div>
+          <h2 id="modalTitle">${txt.title}</h2>
+          <p class="sub">${txt.sub}</p>
+          <div class="case-block">
+            <div class="case-block-label">${T('modal.brief')}</div>
+            <p>${txt.aufgabe}</p>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">${T('modal.approach')}</div>
+            <p>${txt.loesung}</p>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">${T('modal.outcome')}</div>
+            <p>${txt.ergebnis}</p>
+          </div>
+        </div>
+        <aside class="modal-side">
+          <div class="meta-block">
+            <h4>${T('modal.role')}</h4>
+            <p>${txt.role}</p>
+          </div>
+          <div class="meta-block">
+            <h4>${T('modal.tools')}</h4>
+            <div class="tools">
+              ${c.tools.map(t => `<span class="tool ${t.highlight ? 'ki' : ''}">${t.name}</span>`).join('')}
+            </div>
+          </div>
+          ${c.link ? `<div class="meta-block">
+            <h4>${T('modal.live')}</h4>
+            <a class="modal-link" href="${c.link.url}" target="_blank" rel="noopener">${linkLabel}</a>
+          </div>` : ''}
+        </aside>
+      </div>
+      <h3 class="gallery-title">${galleryHeading}</h3>
+      <div class="gallery">${galleryItems}</div>
+    `;
+
+    backdrop.classList.add('open');
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    modal.scrollTop = 0;
+
+    // Apply image protection
+    setTimeout(() => {
+      modal.querySelectorAll('img').forEach(protectImage);
+    }, 80);
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (zoomBackdrop.classList.contains('open')) closeZoom();
+      else closeModal();
+    }
+  });
+
+  // ===========================================================
+  //  PROTECTED IMAGES (defined early, used in zoom + modal)
+  // ===========================================================
+  const watermarkImages = [
+    'BMWALPINA_IAA_Messestand_2015_4P6A2347.JPG',
+    'BMWALPINA_Genf_Messestand_2016_4P6A4385.JPG',
+    'BMWALPINA_Farherlebnistour_2020Alpina-014-editado-1.png'
+  ];
+  const protectedBrands = ['BMWALPINA', 'ALPINAWEIN'];
+
+  // ===========================================================
+  //  IMAGE ZOOM (gallery → fullscreen)
+  // ===========================================================
+  const zoomBackdrop = document.getElementById('zoomBackdrop');
+  const zoomImg = document.getElementById('zoomImg');
+
+  document.addEventListener('click', (e) => {
+    const t = e.target;
+    if (t.tagName === 'IMG' && t.dataset.zoom) {
+      e.stopPropagation();
+      const src = t.dataset.zoom;
+      zoomImg.src = src;
+      // Show watermark only for specific protected images in zoom view
+      const filename = decodeURIComponent(src.split('/').pop());
+      const zoomWatermark = document.getElementById('zoomWatermark');
+      zoomWatermark.style.display = watermarkImages.includes(filename) ? 'block' : 'none';
+      zoomBackdrop.classList.add('open');
+    }
+  });
+  function closeZoom() {
+    zoomBackdrop.classList.remove('open');
+  }
+  zoomBackdrop.addEventListener('click', closeZoom);
+
+  // ===========================================================
+  //  SELF-DRAWING FACE
+  // ===========================================================
+  window.addEventListener('load', () => {
+    const paths = document.querySelectorAll('.face-svg .draw');
+    paths.forEach((path, i) => {
+      try {
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        path.style.animation = `draw 1.4s ${0.4 + i * 0.13}s ease-out forwards`;
+      } catch (e) {}
+    });
+    const pupils = document.querySelectorAll('.pupil');
+    pupils.forEach(p => {
+      p.style.opacity = '0';
+      p.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => { p.style.opacity = '1'; }, 2800);
+    });
+  });
+
+  // ===========================================================
+  //  EYES FOLLOW CURSOR
+  // ===========================================================
+  const faceSvg = document.getElementById('faceSvg');
+  const pupilLeft = document.getElementById('pupilLeft');
+  const pupilRight = document.getElementById('pupilRight');
+  const MAX_OFFSET = 4.5;
+
+  document.addEventListener('mousemove', (e) => {
+    if (!faceSvg) return;
+    const rect = faceSvg.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height * 0.48;
+    let dx = (e.clientX - cx) / (rect.width / 2);
+    let dy = (e.clientY - cy) / (rect.height / 2);
+    dx = Math.max(-1, Math.min(1, dx));
+    dy = Math.max(-1, Math.min(1, dy));
+    const ox = dx * MAX_OFFSET;
+    const oy = dy * MAX_OFFSET;
+    pupilLeft.setAttribute('transform', `translate(${ox}, ${oy})`);
+    pupilRight.setAttribute('transform', `translate(${ox}, ${oy})`);
+  });
+
+  document.addEventListener('touchmove', (e) => {
+    if (!faceSvg || !e.touches[0]) return;
+    const t = e.touches[0];
+    const rect = faceSvg.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height * 0.48;
+    let dx = Math.max(-1, Math.min(1, (t.clientX - cx) / (rect.width / 2)));
+    let dy = Math.max(-1, Math.min(1, (t.clientY - cy) / (rect.height / 2)));
+    pupilLeft.setAttribute('transform', `translate(${dx * MAX_OFFSET}, ${dy * MAX_OFFSET})`);
+    pupilRight.setAttribute('transform', `translate(${dx * MAX_OFFSET}, ${dy * MAX_OFFSET})`);
+  }, { passive: true });
+
+  // ===========================================================
+  //  SCROLL REVEAL — static sections
+  // ===========================================================
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal:not(.work-card)').forEach(el => observer.observe(el));
+
+  // Card-specific observer (re-used after language switch)
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // ===========================================================
+  //  NAV SCROLL STATE
+  // ===========================================================
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // ===========================================================
+  //  IMAGE PROTECTION  (right-click & drag disabled)
+  // ===========================================================
+  function protectImage(img) {
+    if (img.dataset.protected) return; // avoid duplicate listeners
+    const filename = decodeURIComponent(img.src.split('/').pop());
+    const isProtected = protectedBrands.some(brand => filename.includes(brand));
+    if (isProtected) {
+      img.dataset.protected = '1';
+      img.addEventListener('contextmenu', e => e.preventDefault());
+      img.addEventListener('dragstart',   e => e.preventDefault());
+      img.style.userSelect = 'none';
+      img.style.webkitUserSelect = 'none';
+    }
+  }
+
+  // ===========================================================
+  //  LANGUAGE SWITCH — button listeners
+  // ===========================================================
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  // ===========================================================
+  //  INITIALISE
+  // ===========================================================
+  applyTranslations();   // apply saved/default language to static HTML
+  renderCards();         // render work cards in correct language
+
+  // Observe cards + protect card images after first render
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.work-card.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.9) el.classList.add('in');
+      else cardObserver.observe(el);
+    });
+    document.querySelectorAll('img').forEach(protectImage);
+  });
+
+</script>
+
+</body>
+</html>
