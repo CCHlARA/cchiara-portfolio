@@ -16,7 +16,12 @@
     --rose: #E8B4B8;
     --sage: #B5C4A9;
     --terra: #D49B7C;
+    --terra-soft: #DBAF97;
     --cream: #F0E2C5;
+    --yellow: #F5E08A;
+    --yellow-mid: #F5D358;
+    --yellow-dark: #E5A324;
+    --green-light: #C3E2AC;
     --line: rgba(42, 37, 34, 0.12);
     --maxw: 1180px;
   }
@@ -62,7 +67,7 @@
     font-size: 1.05rem;
     letter-spacing: -0.01em;
   }
-  nav .logo span { color: var(--terra); }
+  nav .logo span { color: var(--yellow-mid); }
   nav ul {
     display: flex;
     gap: 36px;
@@ -119,7 +124,7 @@
   }
   .hero h1 em {
     font-style: italic;
-    color: var(--terra);
+    color: var(--rose);
     font-weight: 400;
   }
 
@@ -155,11 +160,12 @@
     font-family: inherit;
   }
   .btn-primary {
-    background: var(--text);
-    color: var(--bg);
+    background: var(--yellow);
+    color: var(--text);
   }
   .btn-primary:hover {
-    background: var(--terra);
+    background: var(--text);
+    color: var(--bg);
     transform: translateY(-2px);
   }
   .btn-ghost {
@@ -237,7 +243,7 @@
   }
   .intro-strip p strong {
     font-weight: 500;
-    color: var(--terra);
+    color: var(--yellow-dark);
     font-style: italic;
   }
 
@@ -284,7 +290,7 @@
   }
   .work-card:hover { transform: translateY(-6px); }
   .work-card:focus-visible {
-    outline: 2px solid var(--terra);
+    outline: 2px solid var(--yellow-dark);
     outline-offset: 8px;
     border-radius: 4px;
   }
@@ -326,7 +332,7 @@
   .card-num {
     font-family: 'Fraunces', serif;
     font-size: 0.85rem;
-    color: var(--terra);
+    color: var(--yellow-dark);
     margin-bottom: 8px;
     letter-spacing: 0.05em;
   }
@@ -407,7 +413,7 @@
     transition: background 0.2s;
     line-height: 0;
   }
-  .modal-close:hover { background: var(--terra); }
+  .modal-close:hover { background: var(--yellow); }
 
   .modal-inner { padding: 0 50px 50px; margin-top: -44px; }
 
@@ -437,7 +443,7 @@
   .modal-head .num {
     font-family: 'Fraunces', serif;
     font-size: 0.85rem;
-    color: var(--terra);
+    color: var(--yellow-dark);
     margin-bottom: 8px;
     letter-spacing: 0.05em;
   }
@@ -497,7 +503,7 @@
     color: var(--text);
     border: 1px solid var(--line);
   }
-  .tool.ki { background: var(--cream); border-color: var(--terra); color: var(--text); font-weight: 500; }
+  .tool.ki { background: var(--green-light); border-color: var(--sage); color: var(--text); font-weight: 500; }
 
   .modal-link {
     display: inline-block;
@@ -627,6 +633,10 @@
     border-radius: 10px;
     border-left: 3px solid var(--terra);
   }
+  .skill.green       { background: var(--green-light); border-left-color: var(--green-light); }
+  .skill.yellow      { background: var(--yellow);      border-left-color: var(--yellow); }
+  .skill.rose        { background: var(--rose);        border-left-color: var(--rose); }
+  .skill.terra-soft  { background: var(--terra-soft);  border-left-color: var(--terra-soft); }
   .skill h4 {
     font-family: 'Fraunces', serif;
     font-size: 1.05rem;
@@ -639,6 +649,10 @@
     line-height: 1.5;
     margin: 0;
   }
+  .skill.green p,
+  .skill.yellow p,
+  .skill.rose p,
+  .skill.terra-soft p { color: var(--text); }
   .lang-bar {
     margin-top: 40px;
     display: flex;
@@ -666,7 +680,7 @@
     margin-bottom: 28px;
     line-height: 1.05;
   }
-  .cta h2 em { color: var(--terra); font-style: italic; }
+  .cta h2 em { color: var(--yellow-mid); font-style: italic; }
   .cta p {
     font-size: 1.15rem;
     color: var(--text-soft);
@@ -877,17 +891,17 @@
       </p>
 
       <div class="skills-grid">
-        <div class="skill"><h4 data-i18n="skill.1.h">Strategische Klarheit</h4><p data-i18n="skill.1.p">Ich denke in Systemen, nicht nur in Layouts.</p></div>
-        <div class="skill"><h4 data-i18n="skill.2.h">Detailliebe</h4><p data-i18n="skill.2.p">Reinzeichnung und Druckvorstufe als Disziplin.</p></div>
-        <div class="skill"><h4 data-i18n="skill.3.h">Ruhe unter Druck</h4><p data-i18n="skill.3.p">15 Jahre Praxis. Deadlines sind keine Krisen.</p></div>
-        <div class="skill"><h4 data-i18n="skill.4.h">Mehrsprachigkeit</h4><p data-i18n="skill.4.p">Briefings auf Spanisch, Deutsch oder Italienisch.</p></div>
+        <div class="skill green"><h4 data-i18n="skill.1.h">Strategische Klarheit</h4><p data-i18n="skill.1.p">Ich denke in Systemen, nicht nur in Layouts.</p></div>
+        <div class="skill yellow"><h4 data-i18n="skill.2.h">Detailliebe</h4><p data-i18n="skill.2.p">Reinzeichnung und Druckvorstufe als Disziplin.</p></div>
+        <div class="skill rose"><h4 data-i18n="skill.3.h">Ruhe unter Druck</h4><p data-i18n="skill.3.p">15 Jahre Praxis. Deadlines sind keine Krisen.</p></div>
+        <div class="skill terra-soft"><h4 data-i18n="skill.4.h">Mehrsprachigkeit</h4><p data-i18n="skill.4.p">Briefings auf Spanisch, Deutsch oder Italienisch.</p></div>
       </div>
 
       <div class="lang-bar">
         <div class="lang"><strong data-i18n="lang.es.label">Spanisch</strong> · <span data-i18n="lang.es.level">Muttersprache</span></div>
         <div class="lang"><strong data-i18n="lang.it.label">Italienisch</strong> · <span data-i18n="lang.it.level">fließend</span></div>
-        <div class="lang"><strong data-i18n="lang.de.label">Deutsch</strong> · <span data-i18n="lang.de.level">B1–B2, im Ausbau</span></div>
-        <div class="lang"><strong data-i18n="lang.en.label">Englisch</strong> · <span data-i18n="lang.en.level">Grundkenntnisse</span></div>
+        <div class="lang"><strong data-i18n="lang.de.label">Deutsch</strong> · <span data-i18n="lang.de.level">B2 / im aktiven Ausbau</span></div>
+        <div class="lang"><strong data-i18n="lang.en.label">Englisch</strong> · <span data-i18n="lang.en.level">gute Mittelstufe</span></div>
       </div>
     </div>
   </div>
